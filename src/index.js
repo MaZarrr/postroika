@@ -1,12 +1,22 @@
-import React from 'react';
+import React from 'react'
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router } from 'react-router-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './components/app/app';
+import ErrorBoudary from './components/error-boundary/error-boundary';
+import StroikaServices from './services/stroika-services';
+import { PostroikaServiceProvider } from './postroika-service-context/postroika-service-context';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const stroikaServices = new StroikaServices();
+
+// каждый компонент отвечает за свой аспект и все эти аспекты становятся доступны тем элементам которые находятся ниже по иерархии
+ReactDOM.render (
+        <ErrorBoudary>
+         <PostroikaServiceProvider value={ stroikaServices }>
+          <Router>
+            <App />
+          </Router>  
+         </PostroikaServiceProvider>
+        </ErrorBoudary>,
+    document.getElementById('root')
+);
