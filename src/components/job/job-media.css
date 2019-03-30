@@ -1,0 +1,173 @@
+@media only screen and (max-width : 1900px) {
+    .my-job {
+        padding: 20px 350px 20px 350px; 
+    }
+    .line {
+        height: 500px
+    }
+    .linee {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width : 1600px) {
+    .my-job {
+        padding: 20px 320px 20px 320px; 
+    }
+    .line {
+        height: 520px
+    }
+
+    .linee {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width : 1200px) {
+    .my-job {
+        padding: 20px 300px 20px 300px; 
+    }
+    .line {
+        height: 450px
+    }
+    .linee {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width : 992px) {
+  .my-job {
+        padding: 20px 200px 20px 200px; 
+    }
+    .my-job h2 {
+        font-size: 32px; 
+    }
+    .line {
+        height: 400px
+    }
+    .linee {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width : 768px) {
+    .my-job {
+        padding: 20px 100px 20px 100px;        
+    }
+    .my-job h2 {
+        font-size: 28px; 
+    }
+    .line {
+        height: 350px
+    }
+    .linee {
+        width: 350px;
+        height: 350px;
+    }
+    .two-txt {
+        -webkit-transform: translate(160px, -20px);
+            -ms-transform: translate(160px, -20px);
+                transform: translate(160px, -20px);
+        width: 250px
+    }
+    .fo {
+        -webkit-transform: translate(-15px, 20px);
+            -ms-transform: translate(-15px, 20px);
+                transform: translate(-15px, 20px);
+    }
+    .fo-txt {
+        -webkit-transform: translate(-95px, 20px);
+            -ms-transform: translate(-95px, 20px);
+                transform: translate(-95px, 20px);
+        width: 250px
+    }
+    .stroika-logo{
+        position: absolute;
+        right: 20px;
+        bottom: -180px
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .my-job {
+        padding: 10px 50px 20px 10px;        
+    } 
+    .my-job h2 {
+        font-size: 20px; 
+    }
+    .line {
+        height: 250px
+    }
+    .linee {
+        width: 310px;
+        height: 310px;
+    }
+    .one-txt {
+        font-size: 15px;
+        max-width: 200px
+    }
+
+    .two {
+        -webkit-transform: translate(15px, 40px);
+            -ms-transform: translate(15px, 40px);
+                transform: translate(15px, 40px);
+        font-size: 15px;
+    }
+
+    .two-txt {
+        -webkit-transform: translate(160px, -20px);
+            -ms-transform: translate(160px, -20px);
+                transform: translate(160px, -20px);
+        font-size: 15px;
+        width: 200px
+    }
+    .tree-txt {
+        -webkit-transform: translate(-40px, -140px);
+            -ms-transform: translate(-40px, -140px);
+                transform: translate(-40px, -140px);        
+        font-size: 15px;
+        /* max-width: 200px */
+    }
+    .fo {
+        -webkit-transform: translate(-25px, 40px);
+            -ms-transform: translate(-25px, 40px);
+                transform: translate(-25px, 40px);
+    }
+    .fo-txt {
+        -webkit-transform: translate(-40px, 40px);
+            -ms-transform: translate(-40px, 40px);
+                transform: translate(-40px, 40px);
+        font-size: 15px;
+        max-width: 200px
+    }
+    .stroika-logo{
+        position: absolute;
+        right: 10px;
+        bottom: -180px
+    }
+    
+}
+
+
+@media only screen and (max-width : 320px) {
+    .my-job {
+        padding: 10px 30px 10px 30px; 
+    }
+    .my-job h2 {
+        font-size: 20px; 
+    }
+    .linee {
+        width: 300px;
+        height: 300px;
+    }
+    .stroika-logo{
+        position: absolute;
+        right: 10px;
+        bottom: -180px
+    }
+
+}

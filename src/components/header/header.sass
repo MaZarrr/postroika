@@ -1,0 +1,161 @@
+// @import 'fonts'
+
+@mixin font-smoothing($value: antialiased)
+  @if $value == antialiased
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+  @else
+    -webkit-font-smoothing: subpixel-antialiased
+    -moz-osx-font-smoothing: auto
+
+
+// body
+//     +bold
+
+=font-awesome($font, $weight, $transform, $color)
+    font-family: $font, Roboto, Arial, Helvetica, sans-serif  
+    font-weight: $weight
+    text-transform: $transform
+    color: $color
+    @content
+
+=class($class, $selector, $property, $value)
+    #{$class}
+        #{$property}: $value
+        #{$selector}
+            @content
+
+.header
+    @include font-smoothing(font-weight)
+    position: relative
+    min-height: 630px
+    width: auto
+    background-repeat: no-repeat
+    background-size: cover
+    background-image: url(./header-background.png) 
+    background-position: center center
+    background-attachment: scroll
+    margin: 0
+    padding: 0
+    font-family: Roboto Condensed Ubuntu, sans-serif
+    font-weight: bold
+    overflow: hidden
+    ul
+        list-style: none
+        padding: 0
+        margin: 0
+    &_title
+        display: flex
+        flex-direction: column
+        margin-bottom: 15px
+    &_content
+        display: flex
+        flex-direction: column
+        h2
+            +font-awesome(Ubuntu, 700, uppercase, #242424)
+            padding-bottom: 5px
+            font-size: 36px
+            @media (max-width: 768px)
+                letter-spacing: -1.5px
+                font-size: 32px
+        a
+            color: #242424
+            font-weight: 600
+            max-width: 30%
+            margin-bottom: 5px
+            font-size: 18px
+            text-decoration: none
+            @media (max-width: 480px)
+                font-size: 16px
+                line-height: 20px
+                letter-spacing: -0.5px
+
+@-webkit-keyframes fadeI 
+  from 
+    opacity: 0
+  to 
+    opacity: 1
+
+@keyframes fadeI
+  from 
+    opacity: 0
+  to 
+    opacity: 1
+
+.fadeI
+    -webkit-animation-name: fadeI
+    animation-name: fadeI
+    animation-duration: 0.9s
+    animation-timing-function: linear
+
++class(".second-piece", "p", max-width, 50%)
+    font-family: "Roboto Condensed", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif 
+    font-weight: bold
+
++class(".head-title", "h1", max-width, 50%)
+    +font-awesome(Ubuntu, 800, uppercase, #ffffff)
+        font-family: Ubuntu, sans-serif
+
+.head-content
+    max-width: 50%
+    .item-content:nth-child(1)
+        padding-bottom: 50px
+    .item-content:nth-child(2)
+        padding-bottom: 20px
+        position: absolute
+
+.txt-head
+    margin: 0
+    padding: 0
+    li
+        margin-top: 10px
+        font-family: "Roboto Condensed", sans-serif
+        font-weight: bold
+
+.btn-bay
+    font-family: "Roboto Condensed", sans-serif
+    font-style: normal
+    font-weight: normal
+    line-height: normal
+    padding: 10px 10px 10px 10px
+    color: #000000
+    text-transform: uppercase
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.84)
+    border-radius: 5px
+    transform: scale(1)
+    transition: 0.5s
+    &:hover
+        transform: scale(1.05)
+        color: #ffffff
+        cursor: pointer
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+    // screen and (orientation: landscape) 
+    //     max-width: 200px
+    // only screen and (max-width: 1600px) 
+    //     max-width: 300px
+
+// @mixin orientations($width, $size)
+//     @if $size == 1600
+//         @media only screen and ($width: $size+px)
+//             color: red
+    // @else if $size == 1200
+    //     color: #ffffff
+    // @else
+    //     color: blue 
+        
+
+
+
