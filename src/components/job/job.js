@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
-import './job.css'
-import './job-media.css'
+import classes from './job.css'
 // import { append, drop, without, add} from 'ramda'
 
 export default class Job extends Component {
-
+    
 state = {
-    inputClasses: ['fade']
+    inputClasses: [classes.fade]
 }
 
 componentDidMount() {
@@ -14,57 +13,59 @@ componentDidMount() {
 }
 handleScroll = () => {
     if(document.documentElement.scrollTop >= 350) {
-        this.state.inputClasses.unshift('zoomIn')
+        this.state.inputClasses.unshift(classes.zoomIn)
         window.removeEventListener('scroll', this.handleScroll);
         this.state.inputClasses.pop()
         console.log(document.documentElement.scrollTop)
     }
 }
 
-render() {    
+render() { 
+    
+    const { job, my_job, shemas, sss, fa_phone, stroika_logo, 
+            linee, one, one_txt, two, two_txt, tree, tree_txt, fo, fo_txt } = classes
+            
     return (
         <>
-      <section className="job d-flex flex-column">
+      <section className={`${job} d-flex flex-column`}>
       <ul className={this.state.inputClasses.join(' ')}>
-        <li className="my-job justify-content-center">
+        <li className={`${my_job} justify-content-center`}>
             <h2>Укладка тротуарной плитки — комплексное мероприятие, требующее соблюдения строгих строительных тонкостей, о которых, благодаря успешному многолетнему опыту работы, знают наши укладчики</h2>
         </li>
       </ul>
     </section>
-{/* ------------------------------------------------------------------------ */}
-        <div className="shemas d-flex justify-content-around align-items-center">
-        {/* <div className="schema"> */}
+    {/* ------------------------------------------------------------------------ */}
+        <div className={`${shemas} d-flex justify-content-around align-items-center`}>
         <div>
         <ul className="m-0 p-0">
         <li className=""></li>
         </ul>
         </div>
         <div>
-        {/* <ul className=""> */}
 <div className="d-flex flex-column justify-content-start">
             <div className="d-flex flex-column align-items-center">
-                <ul className="m-0 p-0"><li className="one m-0 pt-2">1</li></ul>
-                <p className="one-txt">Вызовете замерщика по телефону или отправте заявку с помощью сайта</p>
+                <ul className="m-0 p-0"><li className={`${one} m-0 pt-2`}>1</li></ul>
+                <p className={one_txt}>Вызовете замерщика по телефону или отправте заявку с помощью сайта</p>
             </div>
-        <li className="linee d-flex justify-content-center flex-column">
+        <li className={`${linee} d-flex justify-content-center flex-column`}>
             <div className="d-flex justify-content-between">
                 <div>
-                <ul className="align-self-center m-0 p-0"><li className="fo m-0 pt-2">4</li></ul>
-                <p className="fo-txt">Подпишите договор и смету</p>
+                <ul className="align-self-center m-0 p-0"><li className={`${fo} m-0 pt-2`}>4</li></ul>
+                <p className={fo_txt}>Подпишите договор и смету</p>
                 </div>
-                <ul className="m-0 p-0"><li className="two m-0 pt-2">2</li></ul>
+                <ul className="m-0 p-0"><li className={`${two} m-0 pt-2`}>2</li></ul>
             </div>
-            <p className="two-txt">Замерщик приедет, проведет замеры и оговорит нюансы</p>
-        <div className="d-flex sss flex-column align-items-center">
-        <button className="stroika-logo m-0 p-4 bg-danger">
-            <a href='tel:+79040902239'><i className="fa fa-phone"></i></a>
+            <p className={two_txt}>Замерщик приедет, проведет замеры и оговорит нюансы</p>
+        <div className={`${sss} d-flex flex-column align-items-center`}>
+        <button className={`${stroika_logo} m-0 p-4 bg-danger`}>
+            <a href='tel:+79040902239'><i className={`fa fa-phone ${fa_phone}`}></i></a>
         </button>
     </div>
         </li>
 
-    <div className="d-flex sss flex-column align-items-center">
-        <ul className="p-0 m-0"><li className="tree m-0 pt-2">3</li></ul>
-        <p className="tree-txt">После проведения замеров мы составим смету с деталями заказа</p>
+    <div className={`d-flex ${sss} flex-column align-items-center`}>
+        <ul className="p-0 m-0"><li className={`${tree} m-0 pt-2`}>3</li></ul>
+        <p className={tree_txt}>После проведения замеров мы составим смету с деталями заказа</p>
     </div>
 </div>
         </div>

@@ -128,8 +128,13 @@
 .modal
     width: 100%
     height: 100%
-    z-index: 5
-    background: rgba(61, 61, 61, 0.62)
+    z-index: 100
+    position: fixed
+    background: rgba(10, 10, 10, 0.49)
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
     &_content
         position: relative
         max-width: 65%
@@ -159,13 +164,14 @@
           background-image: none
           padding: 200px
         @media (max-width: 320px)
-          padding: 150px 
+          padding: 150px
         
     &_header
       +font-awesome(Roboto Condensed, 500, uppercase, #000000)
       span
         background: #C12D2D
         padding: 10px
+        // position: absolute
     &_close
         position: absolute
         right: 0
@@ -208,7 +214,7 @@
           margin-bottom: 5px
         @media (max-width: 480px)
           flex-direction: column
-        &-checkbox
+        &_checkbox
           flex-direction: row
         &:last-child
           margin-bottom: 0
@@ -218,14 +224,14 @@
         margin-bottom: 15px
         @media (max-width: 992px)
           font-size: 17px
-      // &_group
-      //   flex-basis: 33.33%
-      //   @media (max-width: 992px)
-      //     flex-basis: 100% 
-      //     width: 100%
-      //   @media (max-width: 480px)
-      //     flex-basis: 100%
-      //     width: 100% 
+      &_group
+        flex-basis: 33.33%
+        @media (max-width: 992px)
+          flex-basis: 100% 
+          width: 100%
+        @media (max-width: 480px)
+          flex-basis: 100%
+          width: 100% 
       &_input
         width: 100%
         border-right-width: 0px
@@ -268,7 +274,7 @@
   @media (max-width: 992px)
     height: 20px
     width: 20px
-  &-label
+  &_label
     display: flex
     align-items: center
     margin-right: 42px

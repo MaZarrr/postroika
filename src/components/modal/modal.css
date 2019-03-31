@@ -129,8 +129,22 @@
 .modal {
   width: 100%;
   height: 100%;
-  z-index: 5;
-  background: rgba(61, 61, 61, 0.62);
+  z-index: 100;
+  position: fixed;
+  background: rgba(10, 10, 10, 0.49);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .modal_content {
@@ -300,7 +314,7 @@
   }
 }
 
-.modal .form_row-checkbox {
+.modal .form_row_checkbox {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -320,6 +334,27 @@
 @media (max-width: 992px) {
   .modal .form_label {
     font-size: 17px;
+  }
+}
+
+.modal .form_group {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+}
+
+@media (max-width: 992px) {
+  .modal .form_group {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal .form_group {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    width: 100%;
   }
 }
 
@@ -409,7 +444,7 @@
   }
 }
 
-.checkbox-label {
+.checkbox_label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

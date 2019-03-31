@@ -1,73 +1,78 @@
 import React, {Component} from 'react'
-import './media-header.css'
-import './header.css'
-import Modal from './../modal/modal'
-// import {update, unless} from 'ramda'
+import classes from './header.css'
+// import Modal from './../modal/modal'
 
 export default class Header extends Component {
 
+  // componentDidUpdate() {
+  //   this.modalShow()
+  // }
   
-  componentDidUpdate() {
-    this.modalShow()  
-  }
-  
-  modalShow = () => {
-    const { isShowModal, ...props } = this.props
-    if(isShowModal) {
-      document.body.style.overflowY = 'hidden'
-      return (
-        <Modal 
-        {...props}
-        />
-      )
-    } else {
-      document.body.style.overflowY = 'scroll'
-    }
-}
+//   modalShow = () => {
+//     const { isShowModal, ...props } = this.props
+//     if(isShowModal) {
+//       document.body.style.overflowY = 'hidden'
+//       return (
+//         <Modal 
+//         {...props}
+//         />
+//       )
+//     } else {
+//       document.body.style.overflowY = 'scroll'
+//     }
+// }
 
 render() {
-  const { isModal, isShowModal } = this.props
+  // const { isModal, //isShowModal } = this.props
+  const { isModal } = this.props
+  
+  // const head = <HeadOffer isModal={isModal} />
   const head = <HeadOffer isModal={isModal} />
-  const modal = isShowModal ? this.modalShow() : null
+  // const modal = isShowModal ? this.modalShow() : null
   
   return (
     <>
     {head}
-    {modal}
+    {/* {modal} */}
     </>
   )
   }
 }
 
-const HeadOffer = ( {isModal} ) => {
-  return (
+const HeadOffer = ( { isModal } ) => {
+
+  const { header, header_title, header_content, fadeI, second_piece, 
+          head_title, head_content, item_content, txt_head, btn_bay, item_content_img } = classes
+
+return (
+
 <section> 
-  <div className="header fadeI d-flex flex-column justify-content-around">
+  <div className={` ${header} ${fadeI} d-flex flex-column justify-content-around`}>
   <div className="d-flex justify-content-around"> 
-    <div className="head-title d-flex flex-column justify-content-start justify-content-sm-around
-    justify-content-md-between">
-    <div className="header_title">
-      <div className="header_content">
+    <div className={`${head_title} d-flex flex-column justify-content-start justify-content-sm-around
+    justify-content-md-between`}>
+    <div className={header_title}>
+      <div className={header_content}>
         <h2>построй-нам.рф</h2>
         <a href="tel:+79040902239">89040902239</a>
         <a href="mailto:vitalistarkiii@gmail.com">vitalistarkiii@gmail.com</a>
       </div>
     </div>
         <h1>Укладка плитки в Валуйках и Валуйском районе</h1>
-      <div className="second-piece d-none d-sm-block d-md-block">
+      <div className={`${second_piece} d-none d-sm-block d-md-block`} >
           <p>Наши специалисты помогут Вам рассчитать смету всех предстоящих работ</p>
       </div>  
     <div>  
       <button 
-      className="btn-bay btn btn-warning d-none d-sm-none d-md-block d-lg-block d-xl-block "
+      className={`${btn_bay} btn btn-warning d-none d-sm-none d-md-block d-lg-block d-xl-block `}
       onClick={isModal}
       >узнать стоимость работ</button>
     </div>
     </div>
 
-  <div className="d-flex flex-column head-content ml-3 h-100">
-  <div className="item-content">
-    <ul className="txt-head head-info-next align-self-center">
+  <div className={`${head_content} d-flex flex-column ml-3 h-100 `}>
+  <div className={item_content}>
+    <ul className={`${txt_head} head-info-next align-self-end`}>
       <li>Выполняем работы по благоустройству территории</li>
       <li>Сможете купить плитку по цене производителя</li>
       <li>Доставляем продукцию до объекта покупателя</li>
@@ -76,11 +81,11 @@ const HeadOffer = ( {isModal} ) => {
       <li>Гарантия на выполненную работу</li>
     </ul>
     <button 
-      className="btn-bay btn btn-warning d-block d-sm-block d-md-none d-lg-none d-xl-none mt-2"
+      className={`${btn_bay} btn btn-warning d-block d-sm-block d-md-none d-lg-none d-xl-none mt-2`}
       onClick={isModal}
       >узнать стоимость работ</button>
   </div>
-    <div className="item-content item-content-img">
+    <div className={`${item_content} ${item_content_img}`}>
       <img src="/img/fotoo.svg" alt=""></img>
     </div>
   </div>
@@ -109,7 +114,32 @@ const HeadOffer = ( {isModal} ) => {
 
 
 
+// const keys = Object.keys(classes)
+  // const cls = keys.join(', ')
+  // const keys = Object.keys(classes)
+  // // const cls = keys.join(', ')
+  // console.log(keys);
+  // const cl = keys.map(el =>  classes[el])
+  // const newCl = cl.join(', ')
+  // console.log(newCl);
+  // const cls = keys.join(', ')
+  // console.log(keys);
 
+  // const keys = Object.keys(classes)
+  // const cl = keys.map(key =>  prop(key, classes))
+  // const newCl = cl.join(', ')
+  // console.log(newCl);
+
+  // const cls = Object.entries(classes)
+  // .map(([, value]) => value)
+  // .join(' ')
+  
+  // const cls = Object.entries(classes)
+  // .map(([, value]) => {
+  //   return value.replace(/-/g, '_')
+  // })
+  // .join(', ')
+  // console.log(cls);
 
 
 

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import './app.css'
+import classes from './app.css'
 import Header from '../header/header'
 import Job from './../job/job'
 import Description from '../descriptions/descript'
 import Footer from '../footer/footer'
+import Modal from './../modal/modal';
 
 export default class App extends Component {
 
@@ -24,6 +25,10 @@ componentDidMount() {
   window.addEventListener('scroll', this.state.scroll());
 }
 
+componentDidUpdate() {
+  this.modalShow()
+}
+
 sucessHandler = () => {
   console.log('success');
 } 
@@ -37,20 +42,39 @@ handleScroll = () => {
   console.log(document.documentElement.scrollTop)
 }
 
+
+modalShow = () => {
+  const { isShowModal } = this.state
+  if(isShowModal) {
+    document.body.style.overflowY = 'hidden'
+  } else {
+    document.body.style.overflowY = 'scroll'
+  }
+}
+
   render()
   {
-    return (
-    <main role="main" className="container-fluid app">
-    <Header 
-    isModal={this.toogleModal} 
-    isShowModal={this.state.isShowModal} 
+    const modal = this.state.isShowModal ? <Modal 
     sucessHandler={this.sucessHandler}
     submitHandler={this.submitHandler}
-    />
+    isModal={this.toogleModal}
+    /> : null
+
+    const main = (
+    <main role="main" className={`${classes.app} container-fluid`}>
+    <Header isModal={this.toogleModal} />
     <Job />
     <Description />
+    {/* {modal} */}
     <Footer isModal={this.toogleModal}/>
     </main>
+    ) 
+
+    return (
+    <>
+      {modal}
+      {main}
+    </>
     );
   }
 };
@@ -182,6 +206,7 @@ handleScroll = () => {
 
 // import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar } from 'recharts';
 // import ShopHeader from './../shop-header/index';
+
 
 
 

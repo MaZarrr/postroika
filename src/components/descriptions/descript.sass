@@ -1,3 +1,5 @@
+@import 'fonts'
+
 @mixin font-smoothing($value: antialiased)
   @if $value == antialiased
     -webkit-font-smoothing: antialiased
@@ -10,7 +12,6 @@
 @mixin font-smoot($weight: bold)
     -webkit-font-smoothing: $weight
     -moz-osx-font-smoothing: $weight
-
 
 .service
     height: 700px
@@ -126,8 +127,8 @@
         left: 60px
         top: -72px
         transform: rotate(180deg)  
-.right
-    position: relative
+// .right
+//     position: relative
     // z-index: 1
 //     span
 //         z-index: 1
@@ -231,15 +232,14 @@
         left: -140px
         top: -352px
         transform: rotate(90deg)
-.descript-txt-left
+.descript_txt_left
     position: absolute
-    color: #fff
+    +boldRob(8, #ffffff, none)
+    font-size: 26px
     left: 100px
     top: 20px
-    font-size: 26px
     max-width: 400px
-    font-family: "Roboto Condensed", sans-serif
-    font-weight: bold
+
 // .descript-txt-right
 //     position: absolute
 //     color: #fff
@@ -252,7 +252,7 @@
 //     font-size: 26px
 //     text-align: right
 
-.description-product
+.description_product
     overflow: hidden
     min-height: 600px
     background-color: #0A0A0A
@@ -280,13 +280,10 @@
                     font-size: 16px
         li:nth-child(1)
             background-color: #0A0A0A
-            color: #ffffff
             width: 400px
             h2
+                +boldRob(8, #fff)
                 font-size: 40px
-                font-weight: bold
-                font-family: "Roboto Condensed", sans-serif
-                text-transform: uppercase
         li:nth-child(2)
             max-width: 765px 
             background-color: #000000
@@ -306,19 +303,19 @@
 .products
     z-index: 2
 
-.fa-volume-control-phone
+.fa_volume_control_phone
     transform: scale(2)
     &:hover
         transform: scale(2.1)
         color: green
         background: inherit
-.fa-envelope
+.fa_envelope
     transform: scale(2)
     &:hover
         transform: scale(2.1)
         color: green
         background: inherit
-.btn-sm
+.btn_sm
     min-width: 50px
     min-height: 50px
     transition: 0.3s
@@ -326,7 +323,7 @@
     &:hover
         transform: scale(1.08)
 
-.phone-companany
+.phone_companany
     text-decoration: none
     i
         text-decoration: none
@@ -343,4 +340,52 @@
                 margin-top: 10px
             @media only screen and (max-width: 480px)
                 margin-top: 10px
+
+   
+@media only screen and (max-width : 1200px) 
+    .descript_txt_left 
+        font-size: 26px
+    
+    .descript_txt_right 
+        font-size: 26px
+        width: 380px
+    
+
+@media only screen and (max-width : 992px) 
+    .descript_txt_left 
+        font-size: 24px
+    
+    .descript_txt_right 
+        font-size: 22px
+        width: 330px
+    
+
+@media only screen and (max-width : 768px) 
+    .descript_txt_left 
+        font-size: 22px
+    
+    .descript_txt_right 
+        font-size: 20px
+        width: 330px
+    
+
+@media only screen and (max-width : 480px) 
+    .descript_txt_left 
+        font-size: 22px
+    
+    .descript_txt_right 
+        font-size: 17px
+        width: 220px
+        line-height: 18px
+    
+
+@media only screen and (max-width : 320px) 
+    .descript_txt_left 
+        font-size: 16px
+    
+    .descript_txt_right 
+        font-size: 16px
+        width: 350px
+    
+
     

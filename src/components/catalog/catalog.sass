@@ -1,3 +1,5 @@
+@import 'fonts'
+
 .catalog
     width: auto
     min-height: 500px
@@ -14,10 +16,10 @@
     i
         text-decoration: none
 .title-catalog
-    div ul
-    font-family: "Roboto Condensed", sans-serif
-    list-style: none    
-    font-weight: bold
+    div 
+        ul
+            list-style: none
+            // +boldRob(8)    
 
 .catalog-title-ukladka
     display: flex
@@ -29,8 +31,7 @@
         margin: 0
         padding: 0 0 10px 0
         list-style: none
-        font-family: "Roboto Condensed", sans-serif    
-        font-weight: bold
+        // +boldRob(8)    
         // border-bottom: 1px solid grey
         li
             border-bottom: 1px solid grey 
@@ -43,9 +44,8 @@
         padding: 10px
         li 
             h2
-                font-family: "Roboto Condensed", sans-serif    
-                font-weight: bold
-                font-size: 34px
+                // +boldRob(8)                    
+                // font-size: 34px
 
 .catalog-title-bay
     display: flex
