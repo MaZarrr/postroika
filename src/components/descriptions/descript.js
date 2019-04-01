@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import classes from './descript.css'
 
-export default class description extends Component{
+export default class Description extends Component{
 
     state = {
         inputClasses: ['fade'],

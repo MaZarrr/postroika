@@ -168,10 +168,9 @@
         
     &_header
       +font-awesome(Roboto Condensed, 500, uppercase, #000000)
-      span
+    &_subtitle
         background: #C12D2D
         padding: 10px
-        // position: absolute
     &_close
         position: absolute
         right: 0
@@ -254,6 +253,10 @@
         +font-awesome(Roboto Condensed, 500, uppercase, #ffffff)
         &:hover
           transform: scale(1.05)
+        &:disabled
+          background: grey
+          transform: scale(1)
+          cursor: no-drop
 
 .input
   height: 70px

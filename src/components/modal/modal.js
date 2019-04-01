@@ -1,13 +1,175 @@
-import React from 'react'
+import React, {Component} from 'react'
 import classes from './modal.css'
 import Input from '../../UI/input/input'
+import axios from 'axios'
 
-const Modal = ({ isModal, sucessHandler, submitHandler }) => {
-    console.log(Object.keys(classes).join(', '));
-    const { zoomInDown, modal, modal_content, modal_header, modal_close, modal_title, modal_subtitle, form_row, 
-            form_row_checkbox, modal_body, form, form_button, input, checkbox, checkbox_label, form_group } = classes
+const validatePhone = (phone) => {
+    const phoneValidate = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/gi
+    return phoneValidate.test(phone)
+}
 
-    return (
+const validateUserName = (name) => {
+    const nameValidate = /^[а-я]/gi
+    return nameValidate.test(String(name).toLowerCase())
+}
+
+export default class Modal extends Component { 
+
+state = {
+    isFormValid: false,
+    formControls: {
+        name: {
+            value: '',
+            type: 'text',
+            placeholder: 'Ваше имя',
+            errorMassege: 'Введите корректное имя',
+            valid: false,
+            touched: false,
+            validation: {
+                required: true,
+                name: true,
+                minLength: 2,
+                maxLength: 25
+                }
+            },
+        phone: {
+            value: '',
+            type: 'number',
+            placeholder: 'Ваш телефон',
+            errorMassege: 'Введите корректный телефон',
+            valid: false,
+            touched: false,
+            validation: {
+                required: true,
+                phone: true,
+                minLength: 10,
+                maxLength: 12
+                }
+            }
+        }
+    }
+
+submitHandler = async (e) => {
+    e.preventDefault()
+    const newUser = {
+        userName: this.state.formControls.name.value,
+        userPhone: this.state.formControls.phone.value
+    };
+    try {
+    const responce = await axios.post('https://plitka-f8e9c.firebaseio.com/plitka.json', newUser)
+    this.setState({
+        isFormValid: false,
+    formControls: {
+        name: {
+            value: '',
+            type: 'text',
+            placeholder: 'Ваше имя',
+            errorMassege: 'Введите корректное имя',
+            valid: false,
+            touched: false,
+            validation: {
+                required: true,
+                name: true,
+                minLength: 2,
+                maxLength: 25
+                }
+            },
+        phone: {
+            value: '',
+            type: 'number',
+            placeholder: 'Ваш телефон',
+            errorMassege: 'Введите корректный телефон',
+            valid: false,
+            touched: false,
+            validation: {
+                required: true,
+                phone: true,
+                minLength: 10,
+                maxLength: 12
+                }
+            }
+        }
+    })
+    console.log(responce);    
+    } catch(e) {
+    console.log(e);
+    }
+} 
+
+sucessHandler = async () => {
+
+} 
+
+validateControl(value, validation) {
+    const { required, phone, minLength, maxLength, name } = validation
+    // console.log(validation);
+    if(!validation) {
+        return true
+    }
+
+    let isValid = true   
+
+    if(required) {
+        isValid = value.trim() !== '' && isValid
+    }
+    if(phone) {
+        isValid = validatePhone(value) && isValid 
+    }
+    if(name) {
+        isValid = validateUserName(value) && isValid
+    }
+    if(minLength) {
+        isValid = value.length >= minLength && value.length <= maxLength && isValid
+    }
+
+    return isValid
+}
+
+onChangeHandler = (event, controlName) => {
+    // console.log(`${controlName}: `, event.target.value);
+    const formControls = { ...this.state.formControls }
+    const control = { ...formControls[controlName] }
+    
+    control.value = event.target.value
+    control.touched = true
+    control.valid = this.validateControl(control.value, control.validation)
+
+    formControls[controlName] = control
+
+    let isFormValid = true
+    Object.keys(formControls).forEach(name => {
+        isFormValid = formControls[name].valid && isFormValid
+    })
+    
+    this.setState({
+        formControls,
+        isFormValid
+    })
+}
+
+renderInputs = () => {
+    return Object.keys(this.state.formControls).map((controlName, index) => {
+        const control = this.state.formControls[controlName]
+        return (
+            <Input
+                key={controlName + index}
+                {...control}
+                shouldValidate={!!control.validation}
+                input={classes.input}
+                onChange={event => this.onChangeHandler(event, controlName)}
+            />
+        )
+    })
+}
+
+render() {
+
+const { zoomInDown, modal, modal_content, modal_header, modal_close, modal_title, modal_subtitle, form_row, 
+        form_row_checkbox, modal_body, form, form_button, checkbox, checkbox_label, form_group } = classes
+
+const { isModal } = this.props 
+    
+return (
     <section 
     className={`${modal}`}>
         <div className={`${modal_content} ${zoomInDown}`}>
@@ -18,7 +180,7 @@ const Modal = ({ isModal, sucessHandler, submitHandler }) => {
                 
                 <form 
                 className={`${form} modal_form`}
-                onSubmit={submitHandler}
+                onSubmit={this.submitHandler}
                 >  
                 <div className={`${form_row} ${form_row_checkbox}`}>
                 <div className="form_checkbox">
@@ -36,19 +198,15 @@ const Modal = ({ isModal, sucessHandler, submitHandler }) => {
                 </div>
 
                 <div className={form_row}>
-                    <Input 
-                        placeholder="Ваше имя" 
-                        input={input}
-                        />
-                    <Input 
-                        placeholder="Ваш телефон" 
-                        input={input}
-                        />
+                    
+                    { this.renderInputs() }
+                    
                     <div className={form_group}>
                         <button 
                         type="success" 
-                        className={`button ${form_button}`} 
-                        onClick={sucessHandler}
+                        className={`button ${form_button}`}
+                        disabled={!this.state.isFormValid} 
+                        onClick={this.sucessHandler}
                         >
                         Отправить заявку</button>
                     </div>
@@ -66,14 +224,9 @@ const Modal = ({ isModal, sucessHandler, submitHandler }) => {
             </div>
         </div>
     </section>
-    )
+        )
+    }
 };
-
-export default Modal 
-
-
-
-
 
 
 
@@ -89,3 +242,14 @@ export default Modal
 //                         <input type="text" className="input form_input"></input>
 //                     </div>
 //                     </div> */}
+
+
+    // const newData = {
+    //     userName: this.state.formControls.name.value,
+    //     userPhone: this.state.formControls.phone.value,
+    // }
+    // axios.post('https://plitka-f8e9c.firebaseio.com/plitka.json', newData)
+    // .then(response => {
+    //     console.log(response);
+    // })
+    // .catch(error => console.log(error))

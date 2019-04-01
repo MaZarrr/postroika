@@ -6,11 +6,12 @@ import Description from '../descriptions/descript'
 import Footer from '../footer/footer'
 import Modal from './../modal/modal';
 
-export default class App extends Component {
+import withTileService from '../hw-components/withTileService'
+
+class App extends Component {
 
 state = {
-  scroll: () => this.handleScroll,
-  pixel: null,
+  userData: [],
   isShowModal: false
 }
 
@@ -22,26 +23,27 @@ toogleModal = () => {
 }
 
 componentDidMount() {
-  window.addEventListener('scroll', this.state.scroll());
+  this.getСustomers()
 }
 
-componentDidUpdate() {
+componentDidUpdate(prevProps, prevState) {
   this.modalShow()
+  if(this.state.userData < prevState.userData) {
+    this.getСustomers()
+  }
 }
 
-sucessHandler = () => {
-  console.log('success');
-} 
-submitHandler = (e) => {
-  e.preventDefault()
-  console.log('submit');
-} 
-
-handleScroll = () => {
-  this.setState({pixel: this.state.scroll})
-  console.log(document.documentElement.scrollTop)
+getСustomers = () => {
+  const { stroikaServices } = this.props
+  stroikaServices.getUsers()
+  .then(users => {
+    this.setState({
+      userData: users
+    })
+    console.log(this.state.userData);
+  })
+  .catch(err => console.log(err))
 }
-
 
 modalShow = () => {
   const { isShowModal } = this.state
@@ -52,26 +54,23 @@ modalShow = () => {
   }
 }
 
-  render()
-  {
-    const modal = this.state.isShowModal ? <Modal 
-    sucessHandler={this.sucessHandler}
-    submitHandler={this.submitHandler}
+render()
+{
+  const modal = this.state.isShowModal ? <Modal 
     isModal={this.toogleModal}
     /> : null
 
-    const main = (
-    <main role="main" className={`${classes.app} container-fluid`}>
+const main = (
+  <main role="main" className={`${classes.app} container-fluid`}>
     <Header isModal={this.toogleModal} />
     <Job />
     <Description />
-    {/* {modal} */}
     <Footer isModal={this.toogleModal}/>
     </main>
     ) 
-
+    
     return (
-    <>
+      <>
       {modal}
       {main}
     </>
@@ -79,6 +78,7 @@ modalShow = () => {
   }
 };
 
+export default withTileService()(App)
 
 
 
@@ -97,7 +97,31 @@ modalShow = () => {
 
 
 
-// import React, {Component} from 'react';
+
+
+
+
+
+// window.addEventListener('scroll', this.state.scroll();
+
+
+// handleScroll = () => {
+//   this.setState({pixel: this.state.scroll})
+//   // console.log(document.documentElement.scrollTop)
+// }
+
+
+
+// state = {
+  //   scroll: () => this.handleScroll,
+  //   pixel: null,
+  //   isShowModal: false,
+  //   userData: []
+  // }
+  
+  
+  
+  // import React, {Component} from 'react';
 // import './app.css'
 // import Header from '../header/header'
 // import Job from './../job/job'

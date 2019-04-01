@@ -1,39 +1,15 @@
 import React, {Component} from 'react'
 import classes from './header.css'
-// import Modal from './../modal/modal'
 
 export default class Header extends Component {
 
-  // componentDidUpdate() {
-  //   this.modalShow()
-  // }
-  
-//   modalShow = () => {
-//     const { isShowModal, ...props } = this.props
-//     if(isShowModal) {
-//       document.body.style.overflowY = 'hidden'
-//       return (
-//         <Modal 
-//         {...props}
-//         />
-//       )
-//     } else {
-//       document.body.style.overflowY = 'scroll'
-//     }
-// }
-
 render() {
-  // const { isModal, //isShowModal } = this.props
   const { isModal } = this.props
-  
-  // const head = <HeadOffer isModal={isModal} />
   const head = <HeadOffer isModal={isModal} />
-  // const modal = isShowModal ? this.modalShow() : null
   
   return (
     <>
     {head}
-    {/* {modal} */}
     </>
   )
   }

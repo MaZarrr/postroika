@@ -217,7 +217,7 @@
   color: #000000;
 }
 
-.modal_header span {
+.modal_subtitle {
   background: #C12D2D;
   padding: 10px;
 }
@@ -407,6 +407,13 @@
 .modal .form_button:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+
+.modal .form_button:disabled {
+  background: grey;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  cursor: no-drop;
 }
 
 .input {

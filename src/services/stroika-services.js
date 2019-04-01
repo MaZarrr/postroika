@@ -1,37 +1,51 @@
+import axios from 'axios'
+// import React, {Component} from 'react'
 // отвечает за отправку данных на сервер 
-export default class StroikaServices {
-    // возвращать пустой массив // пока что это функция будет синхронная
-data = [
-  {
-    id: 1,
-    title: 'Production-Ready Microservices',
-    author: 'Susan J. Fowler',
-    price: 32,
-    coverImage: 'https://images-na.ssl-images-amazon.com/images/I/41yJ75gpV-L._SX381_BO1,204,203,200_.jpg'},
-  {
-    id: 2,
-    title: 'Release It!',
-    author: 'Michael T. Nygard',
-    price: 45,
-    coverImage: 'https://images-na.ssl-images-amazon.com/images/I/414CRjLjwgL._SX403_BO1,204,203,200_.jpg'}
-];
+export default class StroikaServices { //extends Component {
+// возвращать пустой массив // пока что это функция будет синхронная
+userData = []
+
+// async componentDidMount() {
+//   try {
+//     const response = 
+//     return response.data
+//     // console.log(response.data);
+//   } catch(e) {
+//     console.log(e);
+//   }
+// }
+
+getUsers = async () => {
+  const responce = await axios.get('https://plitka-f8e9c.firebaseio.com/plitka.json')
+  return responce.data
+}
+
+// componentDidUpdate = (prevProps, prevState) => {
   
+// }
+
+// render() {
+//   return (
+//     <span></span>
+//   )
+// }
  
-    getBooks() {
-      return new Promise ((resolve, reject) => {
-        window.setTimeout(() => {
-          resolve(this.data)
-          reject(new Error('ERRRRRRRRRRRRRRRRRRRRROR!!!'))
-        }, 700)
-      })
-     
-    }
+// reqisterUsers = async () => {
+//     axios.get('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=AIzaSyDCHWby6osExnUK627WHZY08_d1qQJcxEM');
+//   }
 }
 
 
-
-
-
+// getUsers() {
+//   return new Promise ((resolve, reject) => {
+//     window.setTimeout(() => {
+//       resolve(this.data)
+//       reject(new Error('ERRRRRRRRRRRRRRRRRRRRROR!!!'))
+//     }, 700)
+//   })
+ 
+// }
+// }
 
 
 
@@ -142,6 +156,3 @@ data = [
 //     }
 // }
 // }
-
-
-
